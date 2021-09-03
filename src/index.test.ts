@@ -1,8 +1,11 @@
 import { getImageMetadata } from '.'
 
 describe('getImageMetadata', () => {
-  test('should return the given url', () => {
-    const url = 'https://abdmmar.tech'
-    expect(getImageMetadata(url)).toEqual(url)
+  test('should return Metadata', async () => {
+    const url = 'https://id.wikipedia.org/wiki/Berkas:Rinjani_Caldera.jpg'
+
+    const metadata = await getImageMetadata(url)
+
+    expect(typeof metadata).toBe('object')
   })
 })

@@ -1,14 +1,14 @@
 import fetch from 'node-fetch'
 import * as cheerio from 'cheerio'
 
-type CheerioRoot = ReturnType<typeof cheerio.load>
+export type CheerioRoot = ReturnType<typeof cheerio.load>
 
-type License = {
+export type License = {
   type: string | null
   link: string | null
 }
 
-type Metadata = {
+export type Metadata = {
   link: string
   title: string
   width: string
@@ -78,18 +78,22 @@ export function getOriginalSource($: CheerioRoot) {
 }
 
 export function getAuthor($: CheerioRoot) {
-  return $('#fileinfotpl_aut ~ td')?.text()?.trim() ?? null
+  const author = $('#fileinfotpl_aut ~ td')?.text()?.trim()
+
+  return author != '' && author != null ? author : null
 }
 
 export function getFileInfo($: CheerioRoot) {
   const fileInfoText = $('.fullMedia p .fileInfo').text()
 
-  const [dimensionsText, sizeText, typeText] = fileInfoText.slice(1, fileInfoText.length - 1).split(', ')
+  const [dimensionsText, sizeText, typeText] = fileInfoText?.slice(1, fileInfoText?.length - 1)?.split(', ')
   const [width, , height] = dimensionsText?.split(' ')
   const size = sizeText?.split(': ')[1] ?? null
   const type = typeText?.split(': ')[1] ?? null
 
-  return { width: width ?? null, height: height ?? null, size, type }
+  const fileInfo = { width: width != '' && width != null ? width : null, height: height ?? null, size, type }
+
+  return fileInfo
 }
 
 export function getLicense($: CheerioRoot): License | License[] | null {

@@ -72,7 +72,15 @@ export function getDate($: cheerio.Root): Date | null {
 }
 
 export function getOriginalSource($: cheerio.Root) {
-  return $('#fileinfotpl_src ~ td a')?.attr('href') ?? null
+  const sourceLink = $('#fileinfotpl_src ~ td a')?.attr('href') ?? null
+
+  if (sourceLink == null) {
+    const source = $('#fileinfotpl_src ~ td span.int-own-work')?.text() ?? null
+
+    return source != '' ? source : null
+  }
+
+  return sourceLink
 }
 
 export function getAuthor($: cheerio.Root) {

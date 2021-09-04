@@ -1,6 +1,16 @@
 import fetch from 'node-fetch'
 import * as cheerio from 'cheerio'
-import { getFileInfo, getLicense, License } from './lib'
+import {
+  getAuthor,
+  getDate,
+  getFileInfo,
+  getImage,
+  getLicense,
+  getOriginalSource,
+  getSrc,
+  getTitle,
+  License,
+} from './lib'
 
 describe('lib', () => {
   let $: cheerio.Root
@@ -53,6 +63,107 @@ describe('lib', () => {
 
       expect(typeof fileInfo).toBe('object')
       expect(fileInfo).toMatchObject<FileInfo>(fileInfo)
+    })
+  })
+
+  describe('getImage', () => {
+    it('should return null if page is empty', () => {
+      const image = getImage($empty)
+
+      expect(image).toBeUndefined()
+    })
+
+    it('should return image if image is found', () => {
+      const image = getImage($)
+
+      expect(image).not.toBeUndefined()
+      expect(image.attribs).not.toBeNull()
+      expect(image.attribs.href).not.toBeNull()
+      expect(image.attribs.title).not.toBeNull()
+      expect(typeof image.attribs.href).toBe('string')
+      expect(typeof image.attribs.title).toBe('string')
+    })
+  })
+
+  describe('getAuthor', () => {
+    it('should return null if page is empty', () => {
+      const author = getAuthor($empty)
+
+      expect(author).toBeNull()
+    })
+
+    it('should return author if author is found', () => {
+      const author = getAuthor($)
+
+      expect(author).not.toBeNull()
+      expect(author).not.toBe('')
+      expect(typeof author).toBe('string')
+    })
+  })
+
+  describe('getSrc', () => {
+    it('should return null if page is empty', () => {
+      const src = getSrc($empty)
+
+      expect(src).toBeNull()
+    })
+
+    it('should return src if src is found', () => {
+      const src = getSrc($)
+
+      expect(src).not.toBeNull()
+      expect(src).not.toBe('')
+      expect(typeof src).toBe('string')
+      expect(src.startsWith('https:')).toBe(true)
+    })
+  })
+
+  describe('getTitle', () => {
+    it('should return null if page is empty', () => {
+      const title = getTitle($empty)
+
+      expect(title).toBeNull()
+    })
+
+    it('should return title if title is found', () => {
+      const title = getTitle($)
+
+      expect(title).not.toBeNull()
+      expect(title).not.toBe('')
+      expect(typeof title).toBe('string')
+    })
+  })
+
+  describe('getDate', () => {
+    it('should return null if page is empty', () => {
+      const date = getDate($empty)
+
+      expect(date).toBeNull()
+    })
+
+    it('should return date in Date format if date is found', () => {
+      const date = getDate($)
+
+      expect(date).not.toBeNull()
+      expect(date).not.toBe('')
+      expect(typeof date).toBe('object')
+      expect(date instanceof Date).toBe(true)
+    })
+  })
+
+  describe('getOriginalSource', () => {
+    it('should return null if page is empty', () => {
+      const originalSource = getOriginalSource($empty)
+
+      expect(originalSource).toBeNull()
+    })
+
+    it('should return originalSource if originalSource is found', () => {
+      const originalSource = getOriginalSource($)
+
+      expect(originalSource).not.toBeNull()
+      expect(originalSource).not.toBe('')
+      expect(typeof originalSource).toBe('string')
     })
   })
 })

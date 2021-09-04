@@ -30,7 +30,13 @@ describe('lib', () => {
   })
 
   describe('getFileInfo', () => {
-    type FileInfo = { width: string | null; height: string | null; size: string | null; type: string | null }
+    type FileInfo = {
+      width: string | null
+      height: string | null
+      size: string | null
+      type: string | null
+    }
+
     it('should return object with `null` value if fileInfo is not found', () => {
       const fileInfo = getFileInfo($empty)
 

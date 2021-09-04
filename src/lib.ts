@@ -1,8 +1,6 @@
 import fetch from 'node-fetch'
 import * as cheerio from 'cheerio'
 
-export type CheerioRoot = ReturnType<typeof cheerio.load>
-
 export type License = {
   type: string | null
   link: string | null
@@ -47,11 +45,11 @@ export async function getImageMetadata(url: string): Promise<Metadata> | null {
   return metadata
 }
 
-export function getImage($: CheerioRoot) {
+export function getImage($: cheerio.Root) {
   return $('.fullMedia p a.internal')['0'] as any
 }
 
-export function getSrc($: CheerioRoot): string | null {
+export function getSrc($: cheerio.Root): string | null {
   const image = getImage($)
 
   if (image == null) return null
@@ -61,29 +59,29 @@ export function getSrc($: CheerioRoot): string | null {
   return src
 }
 
-export function getTitle($: CheerioRoot): string | null {
+export function getTitle($: cheerio.Root): string | null {
   const image = getImage($)
 
   return image?.attribs?.title ?? null
 }
 
-export function getDate($: CheerioRoot): Date | null {
+export function getDate($: cheerio.Root): Date | null {
   const date = $('#fileinfotpl_date ~ td time')?.attr('datetime')?.split(' ')[0]
 
   return date != null ? new Date(date) : null
 }
 
-export function getOriginalSource($: CheerioRoot) {
+export function getOriginalSource($: cheerio.Root) {
   return $('#fileinfotpl_src ~ td a')?.attr('href') ?? null
 }
 
-export function getAuthor($: CheerioRoot) {
+export function getAuthor($: cheerio.Root) {
   const author = $('#fileinfotpl_aut ~ td')?.text()?.trim()
 
   return author != '' && author != null ? author : null
 }
 
-export function getFileInfo($: CheerioRoot) {
+export function getFileInfo($: cheerio.Root) {
   const fileInfoText = $('.fullMedia p .fileInfo').text()
 
   const [dimensionsText, sizeText, typeText] = fileInfoText?.slice(1, fileInfoText?.length - 1)?.split(', ')
@@ -96,7 +94,7 @@ export function getFileInfo($: CheerioRoot) {
   return fileInfo
 }
 
-export function getLicense($: CheerioRoot): License | License[] | null {
+export function getLicense($: cheerio.Root): License | License[] | null {
   const licenseTypeList = $('.licensetpl_short')
   const licenseLinkList = $('.licensetpl_link')
 

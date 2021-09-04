@@ -3,9 +3,9 @@
     "target": "ES2015",
     "module": "CommonJS",
     "declaration": true,
-    "outDir": "lib",
+    "outDir": "dist",
     "declarationMap": true
   },
   "include": ["src"],
-  "exclude": ["lib", "**/*.test.ts"]
+  "exclude": ["dist", "**/*.test.ts"]
 }

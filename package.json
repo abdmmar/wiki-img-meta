@@ -2,15 +2,17 @@
   "name": "wiki-img-meta",
   "version": "0.0.1",
   "description": "Get Wikipedia Image Metadata",
-  "main": "lib/index.js",
-  "typings": "lib/index.js",
+  "main": "dist/index.js",
+  "typings": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "tsc && node lib/index.js",
-    "clean": "rm -rf lib/**",
+    "start": "tsc && node dist/index.js",
+    "clean": "rm -rf dist/**",
     "lint": "eslint . --ext .js,.ts",
     "format": "prettier --write \"**/*.{ts, js, json, md}\"",
-    "test": "jest"
+    "test": "jest",
+    "test:cov": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -22,7 +24,7 @@
     "metadata"
   ],
   "files": [
-    "lib"
+    "dist"
   ],
   "author": "Abdullah Ammar <abd.ammar.mar@gmail.com> (https://abdmmar.tech/)",
   "license": "MIT",

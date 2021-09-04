@@ -1,5 +1,14 @@
 {
   "preset": "ts-jest",
   "testEnvironment": "node",
-  "testPathIgnorePatterns": ["<rootDir>/node_modules", "<rootDir>/lib"]
+  "testPathIgnorePatterns": ["<rootDir>/node_modules", "<rootDir>/dist"],
+  "coverageThreshold": {
+    "global": {
+      "branches": 100,
+      "functions": 100,
+      "lines": 100,
+      "statements": 100
+    }
+  },
+  "testTimeout": 30000
 }

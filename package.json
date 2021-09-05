@@ -4,6 +4,11 @@
   "description": "Get Wikipedia Image Metadata",
   "main": "dist/index.js",
   "typings": "dist/index.js",
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
   "scripts": {
     "build": "tsc",
     "start": "tsc && node dist/index.js",

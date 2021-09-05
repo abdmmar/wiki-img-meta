@@ -9,8 +9,13 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          persist-credentials: false
+      - name: Setup node
+        uses: actions/setup-node@v2
         with:
           node-version: '14'
       - name: Install dependencies
@@ -19,6 +24,6 @@ jobs:
         run: npm run ci
       - name: Release
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release

@@ -14,9 +14,9 @@ jobs:
         with:
           node-version: '14'
       - name: Install dependencies
-      - run: npm i
+        run: npm i
       - name: Run linter, formatter, test, and coverage
-      - run: npm run ci
+        run: npm run ci
       - name: Release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

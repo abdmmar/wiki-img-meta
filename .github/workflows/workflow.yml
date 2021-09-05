@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           persist-credentials: false
       - name: Setup node
         uses: actions/setup-node@v2

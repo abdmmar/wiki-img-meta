@@ -1,6 +1,6 @@
 {
   "name": "wiki-img-meta",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Get Wikipedia Image Metadata",
   "main": "dist/index.js",
   "typings": "dist/index.js",

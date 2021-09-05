@@ -13,13 +13,6 @@ describe('getImageMetadata', () => {
     {
       url: 'https://commons.wikimedia.org/wiki/File:American_cover_of_%C2%ABThe_Mysterious_Affair_at_Styles%C2%BB.png?uselang=ru',
     },
-    { url: 'https://de.wikipedia.org/wiki/Datei:Cornelia_Froboess.jpg' },
-    { url: 'https://it.wikipedia.org/wiki/File:Gipo_Viani_in_Trionfo.JPG' },
-    { url: 'https://it.wikipedia.org/wiki/File:Fairey_Firefly.jpg' },
-    {
-      url: 'https://pt.wikipedia.org/wiki/Ficheiro:Fran%C3%A7ois-Ren%C3%A9_de_Chateaubriand_by_Anne-Louis_Girodet_de_Roucy_Trioson.jpg',
-    },
-    { url: 'https://pl.wikipedia.org/wiki/Plik:Hill_303_Memorial.jpg' },
   ])('should return metadata from ($url)', async ({ url }) => {
     const metadata = await getImageMetadata(url)
 

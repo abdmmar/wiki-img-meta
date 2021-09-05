@@ -22,6 +22,8 @@ export type Metadata = {
 
 /**
  * Get Wikipedia Image Metadata by URL
+ * @param {string} url - A Wikipedia image URL
+ * @return {Promise<Metadata>} Metadata object
  */
 
 export async function getImageMetadata(url: string): Promise<Metadata> | null {

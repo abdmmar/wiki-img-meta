@@ -26,9 +26,7 @@ export type Metadata = {
  * @return {Promise<Metadata>} Metadata object
  */
 
-export async function getImageMetadata(url: string): Promise<Metadata> | null {
-  if (!url) return null
-
+export async function getImageMetadata(url: string): Promise<Metadata> {
   const response = await fetch(url)
   const html = await response.text()
   const $ = cheerio.load(html)

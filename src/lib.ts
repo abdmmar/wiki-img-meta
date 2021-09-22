@@ -55,7 +55,6 @@ export function getSrc($: cheerio.Root): string | null {
   const image = getImage($)
 
   if (image == null) return null
-  if (image.attribs == null) return null
 
   const src = 'https:' + image.attribs.href
   return src
@@ -68,9 +67,9 @@ export function getTitle($: cheerio.Root): string | null {
 }
 
 export function getDate($: cheerio.Root): Date | null {
-  const date = $('#fileinfotpl_date ~ td time')?.attr('datetime')?.split(' ')[0]
+  const date = $('#fileinfotpl_date ~ td').text()
 
-  return date != null ? new Date(date) : null
+  return date != null && date != '' ? new Date(date) : null
 }
 
 export function getOriginalSource($: cheerio.Root) {

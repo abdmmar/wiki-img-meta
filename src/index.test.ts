@@ -8,7 +8,7 @@ import { getImageMetadata } from '.'
 
 describe('getImageMetadata', () => {
   it.each([
-    { url: 'https://id.wikipedia.org/wiki/Berkas:Rinjani_Caldera.jpg' },
+    { url: 'https://id.wikipedia.org/wiki/Berkas:Dead_Javan_Rhino.jpg' },
     { url: 'https://commons.wikimedia.org/wiki/File:Val%C3%A8re_et_Haut_de_Cry.jpg' },
     {
       url: 'https://commons.wikimedia.org/wiki/File:American_cover_of_%C2%ABThe_Mysterious_Affair_at_Styles%C2%BB.png?uselang=ru',
@@ -24,14 +24,6 @@ describe('getImageMetadata', () => {
     expect(metadata.size).not.toBeNull()
     expect(metadata.type).not.toBeNull()
     expect(metadata.src).not.toBeNull()
-  })
-
-  it('should return null if url is null', async () => {
-    const url = ''
-
-    const metadata = await getImageMetadata(url)
-
-    expect(metadata).toBeNull()
   })
 
   it('should return object with null value if url is not from wikipedia', async () => {

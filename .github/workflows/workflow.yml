@@ -12,7 +12,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           persist-credentials: false
       - name: Setup node
         uses: actions/setup-node@v2
@@ -22,6 +21,8 @@ jobs:
         run: npm i
       - name: Run linter, formatter, test, and coverage
         run: npm run ci
+      - name: Build package
+        run: npm run build
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

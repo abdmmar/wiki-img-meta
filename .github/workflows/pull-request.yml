@@ -1,7 +1,5 @@
-name: CI
+name: Lint and test the files to ensure code quality
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
@@ -18,13 +16,6 @@ jobs:
         with:
           node-version: '14'
       - name: Install dependencies
-        run: npm i
+        run: npm ci
       - name: Run linter, formatter, test, and coverage
-        run: npm run ci
-      - name: Build package
-        run: npm run build
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+        run: npm run lint && npm run format && npm run test:ci && npm run test:cov

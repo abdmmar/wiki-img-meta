@@ -1,1 +1,1 @@
-export { getImageMetadata } from './lib'
+export { getImageMetadata, Metadata, License } from './lib'

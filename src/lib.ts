@@ -54,7 +54,7 @@ export function getSrc($: cheerio.Root): string | null {
 
   if (image == null) return null
 
-  const src = 'https:' + image.attribs.href
+  const src = image.attribs.href
   return src
 }
 
